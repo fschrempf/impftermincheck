@@ -21,4 +21,4 @@ jobs:
           subject: "Impftermincheck: Es sind Impftermine verfügbar!"
           body: "Es sind Impftermine verfügbar!"
           to: ${{secrets.MAIL_RECIPIENTS}}
-          from: Impftermicheck
+          from: Impftermincheck
