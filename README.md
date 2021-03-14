@@ -1,10 +1,14 @@
+**Update 14.03.21**: Offenbar wurde im Verlauf der Woche "Rate Limiting" für Anfragen an die API von impfterminservice.de aktiviert, die von außerhab der eigenen Service-Plattform kommen. Es ist damit zu rechnen, dass die Anfragen über GitHub Actions mit einem Error "429 Too Many Requests" fehlschlagen.
+
+**Achtung**: Bei meinen Tests wurde trotz 5-Minuten-Intervall nur sehr unregelmäßig mit größeren Abständen der Job getriggert. Offenbar ist GitHub hier nicht wirklich zuverlässig und es kann daher dazu kommen, dass verfügbare Impftermine, die schnell ausgebucht sind verpasst werden.
+
+---
+
 Dieses Repository stellt einen einfachen Benachrichtigungsservice für den Service zum Reservieren von COVID-19 Impfterminen unter https://www.impfterminservice.de bereit. Als Infrastruktur wird [GitHub Actions](https://docs.github.com/de/actions) und [Actionsflow](https://github.com/actionsflow/actionsflow) verwendet.
 
 Diese Software steht in keinem Zusammenhang mit den Betreibern von https://www.impfterminservice.de oder sonstigen offiziellen Stellen.
 
 Alle 5 Minuten (kleinstes Intervall, das bei GitHub Actions möglich ist) wird die API des Impftermin-Service abgefragt und bei positivem Ergebnis (Termine verfügbar) eine E-Mail über den konfigurierten Server an die angegebenen Empfänger versendet.
-
-**Achtung**: Bei meinen Tests wurde trotz 5-Minuten-Intervall nur sehr unregelmäßig mit größeren Abständen der Job getriggert. Offenbar ist GitHub hier nicht wirklich zuverlässig und es kann daher dazu kommen, dass verfügbare Impftermine, die schnell ausgebucht sind verpasst werden.
 
 This is a workflow repository powered by [Actionsflow](https://github.com/actionsflow/actionsflow), generated from [actionsflow/actionsflow-workflow-default](https://github.com/actionsflow/actionsflow-workflow-default)
 
@@ -13,7 +17,7 @@ This is a workflow repository powered by [Actionsflow](https://github.com/action
 1. Dieses Repository forken (Button oben rechts)
 2. In den Repository-Einstellungen Secrets auswählen und folgende Werte anlegen:
   * `IMPFSTOFFE`  
-    Ein kommagetrennte Liste von Impstoff-IDs. Verfügbare Impstoffe können [hier als JSON](https://www.impfterminservice.de/assets/static/its/vaccination-list.json) abgerufen werden (Property `qualification`).  
+    Ein kommagetrennte Liste von Impstoff-IDs. Verfügbare Impstoffe können [hier als JSON](https://001-iz.impfterminservice.de/assets/static/its/vaccination-list.json) abgerufen werden (Property `qualification`).  
     Beispiel: `L920,L921,L922`
   * `IZ_ID`  
     URL-ID des Impfzentrum-Servers. Verfügbare Impfzentren können [hier als JSON](https://www.impfterminservice.de/assets/static/impfzentren.json) abgerufen werden (Dresitellige Ziffer am Anfang der URL).  
